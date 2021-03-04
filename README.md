@@ -35,4 +35,4 @@ API 문서: https://documenter.getpostman.com/view/13971039/Tz5iALkP
 `docker pull leejaek/theplaces:0.1`
 
 - 도커 이미지 실행
-`docker run -d -p 8000:8000 —name theplaces leejaek/theplaces:0.1`
+`docker run -d -p 8000:8000 --name theplaces leejaek/theplaces:0.1`
