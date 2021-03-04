@@ -8,10 +8,11 @@
 
 
 ## 활용 프레임워크 / 라이브러리
-Django 3.1.7
-django-cors-headers 3.7.0
-PyJWT 2.0.1
-bcrypt 3.2.0
+Django
+django-cors-headers
+PyJWT
+bcrypt
+gunicorn
 
 ## 구현 기능
 - 유저 로그인 / 인증 기능
