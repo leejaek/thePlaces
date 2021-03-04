@@ -22,3 +22,17 @@ bcrypt 3.2.0
   - 장소 단위 리뷰 조회, 수정, 삭제 기능
   - 토큰 확인을 통해 로그인한 유저가 리뷰를 작성할 수 있으며, 본인의 리뷰만 수정, 삭제 가능
 - 각 구현 기능에 대해서는 테스트 코드를 작성하여 동작을 확인
+
+https://documenter.getpostman.com/view/13971039/Tz5iALkP
+
+## 개선 필요 사항
+- 내용 수정 시, 전체 내용을 다시 body에 담아 보내서 Update되는 부분을 수정 필요 부분만 전송하여 수정되도록 변경
+- 지역별, 카테고리별 필터링하여 장소를 조회할 수 있는 API 구현 필요
+- 장소 CRUD 기능 접근 권한을 권리자 권한으로 변경
+
+## 도커
+- 도커 이미지 다운로드
+`docker pull leejaek/theplaces:0.1`
+
+- 도커 이미지 실행
+`docker run -d -p 8000:8000 —name theplaces leejaek/theplaces:0.1`
