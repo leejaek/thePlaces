@@ -37,4 +37,4 @@ API 문서: https://documenter.getpostman.com/view/13971039/Tz5iALkP
 - 도커 이미지 실행
 `docker run -d -p 8000:8000 --name theplaces leejaek/theplaces:0.1`
 
-- 127.0.0.1:8000으로 위의 API 문서를 참고하여 테스트할 수
+- 127.0.0.1:8000으로 위의 API 문서를 참고하여 테스트할 수 있습니다.
