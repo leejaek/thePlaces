@@ -23,7 +23,7 @@ bcrypt 3.2.0
   - 토큰 확인을 통해 로그인한 유저가 리뷰를 작성할 수 있으며, 본인의 리뷰만 수정, 삭제 가능
 - 각 구현 기능에 대해서는 테스트 코드를 작성하여 동작을 확인
 
-https://documenter.getpostman.com/view/13971039/Tz5iALkP
+API 문서: https://documenter.getpostman.com/view/13971039/Tz5iALkP
 
 ## 개선 필요 사항
 - 내용 수정 시, 전체 내용을 다시 body에 담아 보내서 Update되는 부분을 수정 필요 부분만 전송하여 수정되도록 변경
