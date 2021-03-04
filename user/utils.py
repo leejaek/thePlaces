@@ -13,6 +13,8 @@ def id_auth(func):
     def decorated_function(self, request, *args, **kwargs):
         try:
             access_token = request.headers.get('Authorization')
+            access_token = access_token.split(' ')[-1]
+
             payload      = jwt.decode(access_token, SECRET_KEY, algorithms=ALGORITHM)
 
             login_user   = User.objects.get(id = payload['id'])

@@ -99,27 +99,10 @@ class readTest(TestCase):
     def test_read(self):
         client = Client()
 
-        response = client.get('/place/1', content_type = 'application/json')
+        response = client.get('/place/', content_type = 'application/json')
 
-        self.assertEquals(response.json(), {"place": {"id": 1, "name": "테스트", "type": "테스트타입", "road_address": "테스트로 1", "local_region": "테스트구", "metro_region": "테스트광역시"}})
+        self.assertEquals(response.json(), {"result" :[{"id": 1, "name": "테스트", "type": "테스트타입", "road_address": "테스트로 1", "local_region": "테스트구", "metro_region": "테스트광역시"}]})
         self.assertEquals(response.status_code, 200)
-
-    def test_deleted_place_read(self):
-        client = Client()
-
-        response = client.get('/place/2', content_type = 'application/json')
-
-        self.assertEquals(response.json(), {"message": "DELETED_PLACE"})
-        self.assertEquals(response.status_code, 401)
-
-    def test_deleted_place_read(self):
-        client = Client()
-
-        response = client.get('/place/99', content_type = 'application/json')
-
-        self.assertEquals(response.json(), {"message": "INVALID_PLACE_ID"})
-        self.assertEquals(response.status_code, 401)
-
 
 class updateTest(TestCase):
     def setUp(self):

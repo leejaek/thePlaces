@@ -44,31 +44,31 @@ class PlaceCreateView(View):
             return JsonResponse({"message": "INVALID_REGION"}, status = 401)
         except LocalRegion.DoesNotExist:
             return JsonResponse({"message": "INVALID_REGION"}, status = 401)
+    
+    def get(self, request):
+        places = Place.objects.select_related('place_type', 'region', 'region__metro_region').filter(deleted_at__isnull = True)
+
+        result = [
+                    {
+                        "id"           : place.id,
+                        "name"         : place.name,
+                        "type"         : place.place_type.name,
+                        "road_address" : place.road_address,
+                        "local_region" : place.region.name,
+                        "metro_region" : place.region.metro_region.name
+                    } for place in places
+                ]
+        return JsonResponse({"result": result}, status = 200)
+
 
 
 class PlaceView(View):
-    def get(self, request, place_pk):
-        try:
-            place = Place.objects.select_related('place_type', 'region', 'region__metro_region').get(id = place_pk)
-
-            if place.deleted_at == None:
-                place_result = {
-                    "id"           : place.id,
-                    "name"         : place.name,
-                    "type"         : place.place_type.name,
-                    "road_address" : place.road_address,
-                    "local_region" : place.region.name,
-                    "metro_region" : place.region.metro_region.name
-                }
-                return JsonResponse({"place": place_result}, status = 200)
-            else:
-                return JsonResponse({"message": "DELETED_PLACE"}, status = 401)
-        except Place.DoesNotExist:
-            return JsonResponse({"message": "INVALID_PLACE_ID"}, status = 401)
-
     def patch(self, request, place_pk):
         try:
             data = json.loads(request.body)
+            
+            data_keys = data.keys()
+            
             place_type = PlaceType.objects.get(name = data['place_type'])
             metro_region = MetroRegion.objects.get(name=data['metro_region'])
             local_region = LocalRegion.objects.get(name=data['local_region'], metro_region = metro_region)

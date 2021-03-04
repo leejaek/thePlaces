@@ -17,10 +17,11 @@ class CheckInView(View):
         try:
             user = request.user
             place = Place.objects.get(id = place_pk)
+            today = timezone.now()
 
             if CheckIn.objects.filter(user = user, place = place, deleted_at__isnull = True).exists():
                 recent_checkin = CheckIn.objects.filter(user = user, place = place, deleted_at__isnull = True).latest('created_at')
-                if (timezone.now() - recent_checkin.created_at).days == 0:
+                if today.strftime('%Y-%m-%d') == recent_checkin.created_at.strftime('%Y-%m-%d'):
                     return JsonResponse({"message": "ALREADY_CHECKED_IN_TODAY"}, status = 401)
             
             CheckIn.objects.create(user = user, place = place)
